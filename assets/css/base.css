@@ -1,0 +1,140 @@
+@import './fonts.css';
+
+:root {
+  /* Color Variables */
+  --color-primary: #622F2B;
+  --color-secondary: #FFCB0D;
+  --supporting-green: #415515;
+  --color-success: #28a745;
+  --color-danger: #dc3545;
+  --color-warning: #ffc107;
+  --color-info: #17a2b8;
+  --color-light: #f8f9fa;
+  --color-dark: #343a40;
+  --color-white: #fff;
+  --color-black: #000;
+
+  /* Font Variables */
+  --font-family-base: 'Outfit', 'Helvetica Neue', Arial, sans-serif;
+  --font-size-base: 16px;
+  --font-weight-normal: 400;
+
+  /* Spacing */
+  --spacing-xs: 4px;
+  --spacing-sm: 8px;
+  --spacing-md: 16px; 
+  --spacing-lg: 24px;
+  --spacing-xl: 32px;
+}
+
+/* CSS Reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: var(--font-family-base);
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-normal);
+  background-color: var(--color-light);
+  color: var(--color-dark);
+  line-height: 1.5;
+}
+
+p{
+  margin-bottom: 0 !important;
+}
+
+ul{
+  margin-bottom: 0;
+  padding-left: 0;
+}
+
+h1,h2,h3,h4,h5,h6{
+  margin-bottom: 0 !important;
+}
+
+a{
+  text-decoration: none;
+}
+
+li{
+  list-style-type: none;
+}
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.mt-1 { margin-top: var(--spacing-xs); }
+.mt-2 { margin-top: var(--spacing-sm); }
+.mt-3 { margin-top: var(--spacing-md); }
+.mt-4 { margin-top: var(--spacing-lg); }
+.mt-5 { margin-top: var(--spacing-xl); }
+
+.mb-1 { margin-bottom: var(--spacing-xs); }
+.mb-2 { margin-bottom: var(--spacing-sm); }
+.mb-3 { margin-bottom: var(--spacing-md); }
+.mb-4 { margin-bottom: var(--spacing-lg); }
+.mb-5 { margin-bottom: var(--spacing-xl); }
+  
+.p-1 { padding: var(--spacing-xs); }
+.p-2 { padding: var(--spacing-sm); }
+.p-3 { padding: var(--spacing-md); }
+.p-4 { padding: var(--spacing-lg); }
+.p-5 { padding: var(--spacing-xl); }
+  
+.swiper-button-prev:after
+ {
+    content: 'prev';
+    font-size: 20px !important;
+    font-weight: 600;
+    /* color: var(--supporting-green); */
+
+}
+
+.swiper-button-next:after
+ {
+    content: 'next';
+    font-size: 20px !important;
+    font-weight: 600;
+    /* color: var(--supporting-green); */
+}
+
+
+.row {
+  --bs-gutter-x: 0;
+}
+
+.view-all{
+
+  padding: 8px 24px;
+  border-radius: 6px;
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+  font-size: 20px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 130%; /* 26px */
+  letter-spacing: -0.2px;
+  transition: all 0.3s ease;
+}
+
+
+.view-all:hover{
+    background-color: var(--color-primary);
+    color: var(--color-white);
+
+}
