@@ -1157,8 +1157,8 @@
       .swiper-nav-buttons {
         display: flex;
         gap: 30px;
-        margin-left: 20px;
         align-items: center;
+        justify-content: center;
     
         span {
           color: var(--color-primary);
@@ -1717,7 +1717,7 @@
   
     .video {
       position: relative;
-      height: 100vh;
+      height: 80vh;
     
       .video-player-wrapper {
         position: absolute;
@@ -2500,7 +2500,7 @@
           top: 50%;
           left: 50%;
           transform: translate(-50%, -50%);
-          width: 90%;
+          width: 80%;
           text-align: center;
           
           h2 {
@@ -2525,15 +2525,15 @@
           }
           
           .btn-container {
-            flex-direction: column;
+            flex-direction: row;
             gap: 12px;
             
             .btn1, .btn2 {
-              width: 100%;
+              // width: 100%;
               max-width: 200px;
-              margin: 0 auto;
+              // margin: 0 auto;
               justify-content: center;
-              padding: 12px 24px;
+              padding: 8px 24px;
             }
           }
         }
@@ -2807,3 +2807,290 @@ nav {
   width: 100%;
   z-index: 998;
 }
+
+
+// ************* mobile responsive ********************
+
+@media (max-width: 678px) {
+
+  #main .our-strength .icon-wrapper {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .button-wrapper{
+    display: none !important;
+  }
+
+  #main .heading h3 {
+    font-size: 28px !important;
+  }
+
+  #main .heading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding-bottom: 30px;
+    position: relative;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.view-all {
+  font-size: 16px !important;
+}
+
+#main .video .video-player-wrapper .video-thumbnail{
+padding: 0 10px;
+  width: 100%;
+}
+
+#main .video .video-player-wrapper {
+  position: static;
+  transform: none;
+}
+
+#main .video {
+  position: relative;
+  height: fit-content;
+}
+
+#main .video .bg-img {
+  width: 100%;
+  height: auto;
+  -o-object-fit: cover;
+  object-fit: cover;
+  -o-object-position: center center;
+  object-position: center center;
+  position: absolute;
+  bottom: 0;
+  z-index: -1;
+}
+
+#main .video .video-player-wrapper #main-video{
+  width: 100%;
+  padding: 0 10px;
+}
+
+#main footer .copyright .col-md-8 p{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 18px;
+}
+
+#main footer .copyright .col-md-8 p a{
+  font-size: 18px;
+}
+
+#main footer .copyright .d-flex a{
+  font-size: 18px;
+}
+
+#main footer{
+  text-align: center;
+}
+
+#main footer .card1, #main footer .card2{
+  margin-bottom: 40px;
+}
+
+#main footer .row .card3 p{
+  margin-bottom: 20px !important;
+}
+
+#main footer .row .card3 a{
+  margin-top: 0 !important;
+}
+
+.shop-by-concern .d-flex{
+ align-items: center !important;
+}
+
+br {
+  display: none;
+}
+
+#main .our-strength .heading{
+  gap: 0 !important;
+}
+#main footer .copyright .d-flex {
+  justify-content: center !important;
+}
+
+
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .shop-by-concern {
+    padding: 30px 15px;
+  }
+
+  .shop-by-concern .heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 20px;
+    padding-bottom: 20px;
+  }
+
+  .shop-by-concern .heading h3 {
+    font-size: 28px;
+  }
+
+  .shop-by-concern .swiper-nav-buttons {
+    width: 100%;
+    justify-content: space-between;
+    margin-left: 0;
+  }
+
+  .shop-by-concern .d-flex.align-items-start {
+    flex-direction: column;
+  }
+
+  .shop-by-concern .nav-pills {
+    width: 100% !important;
+    padding-right: 0;
+    flex-direction: row !important;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    padding-right: 0 !important;
+  }
+
+  .shop-by-concern .nav-pills .nav-link {
+    white-space: nowrap;
+    font-size: 14px;
+    padding: 12px 16px;
+    margin-bottom: 0;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .shop-by-concern .tab-content {
+    width: 100%;
+  }
+
+  .shop-by-concern .product-card {
+    margin: 0 5px;
+  }
+
+  .shop-by-concern .img-container {
+    height: 250px;
+  }
+
+  .shop-by-concern .product-card h3 {
+    font-size: 16px;
+  }
+
+  .shop-by-concern .product-card p {
+    font-size: 12px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  .shop-by-concern .product-card h4 {
+    font-size: 18px;
+  }
+
+  .shop-by-concern .action-btn {
+    min-width: 140px;
+    padding: 10px 16px;
+    font-size: 12px;
+  }
+
+  .shop-by-concern .swiper-button-next,
+  .shop-by-concern .swiper-button-prev {
+    width: 36px;
+    height: 36px;
+  }
+
+  .shop-by-concern .swiper-button-next svg,
+  .shop-by-concern .swiper-button-prev svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .shop-by-concern .wishlist {
+    width: 36px !important;
+    height: 36px !important;
+    padding: 8px !important;
+  }
+
+  .shop-by-concern .wishlist svg {
+    width: 18px !important;
+    height: 18px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .shop-by-concern {
+    padding: 20px 10px;
+  }
+
+  .shop-by-concern .heading h3 {
+    font-size: 24px;
+  }
+
+  .shop-by-concern .img-container {
+    height: 200px;
+  }
+
+  .shop-by-concern .nav-pills .nav-link {
+    font-size: 12px;
+    padding: 10px 12px;
+  }
+
+  .shop-by-concern .action-btn {
+    min-width: 120px;
+    padding: 8px 12px;
+    font-size: 11px;
+  }
+}
+
+/* Add this inside your existing CSS file */
+@media (max-width: 768px) {
+  .our-strength {
+    padding: 40px 20px;
+  }
+
+  .our-strength .heading h2 {
+    font-size: 26px;
+  }
+
+  .our-strength .heading p {
+    font-size: 15px;
+    line-height: 140%;
+  }
+
+  .our-strength .icon-wrapper {
+    display: grid !important;
+    grid-template-columns: repeat(2, 1fr) !important;
+    gap: 16px;
+    justify-items: center;
+    padding: 0;
+    margin-top: 30px !important;
+  }
+
+  .our-strength .icon-box {
+    width: 100%;
+    max-width: 160px;
+    padding: 20px 10px;
+    border-radius: 12px;
+    height: 220px;
+  }
+
+  .our-strength .icon-box img {
+    width: 60px;
+    height: 60px;
+  }
+
+  .our-strength .icon-box span {
+    font-size: 14px;
+    line-height: 120%;
+  }
+}
+

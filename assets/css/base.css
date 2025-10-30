@@ -138,3 +138,9 @@ li{
     color: var(--color-white);
 
 }
+
+.wishlist{
+  position: absolute !important;
+  z-index: 15 !important;
+  cursor: pointer;
+  }
