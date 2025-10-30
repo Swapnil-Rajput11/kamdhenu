@@ -180,56 +180,56 @@ const blogSwiper = new Swiper('.blog-swiper', {
 });
 
 document.addEventListener('DOMContentLoaded', function() {
-  // Initialize all swipers
   const swipers = [];
   const swiperContainers = document.querySelectorAll('.shop-by-swiper');
-  
+
   swiperContainers.forEach((container, index) => {
-      const swiper = new Swiper(container, {
+    const swiper = new Swiper(container, {
+      slidesPerView: 3,
+      spaceBetween: 20,
+      loop: true,
+      centeredSlides: false,
+      pagination: {
+        el: container.querySelector('.swiper-pagination'),
+        clickable: true,
+      },
+      navigation: {
+        nextEl: '.bestseller-swiper-button-next',
+        prevEl: '.bestseller-swiper-button-prev',
+      },
+      breakpoints: {
+        0: {
+          slidesPerView: 1,
+          spaceBetween: 0,
+          centeredSlides: true, // ✅ ensures it’s centered in viewport
+        },
+        768: {
+          slidesPerView: 2,
+          spaceBetween: 15,
+          centeredSlides: false,
+        },
+        1024: {
           slidesPerView: 3,
           spaceBetween: 20,
-          loop: true,
-          pagination: {
-              el: container.querySelector('.swiper-pagination'),
-              clickable: true,
-          },
-          navigation: {
-              nextEl: '.bestseller-swiper-button-next',
-              prevEl: '.bestseller-swiper-button-prev',
-          },
-          breakpoints: {
-              320: {
-                  slidesPerView: 1,
-                  spaceBetween: 10
-              },
-              768: {
-                  slidesPerView: 2,
-                  spaceBetween: 15
-              },
-              1024: {
-                  slidesPerView: 3,
-                  spaceBetween: 20
-              }
-          }
-      });
-      
-      swipers.push(swiper);
+          centeredSlides: false,
+        },
+      },
+    });
+
+    swipers.push(swiper);
   });
-  
-  // Handle tab changes to update swiper
+
   const tabButtons = document.querySelectorAll('#v-pills-tab button');
-  tabButtons.forEach(button => {
-      button.addEventListener('shown.bs.tab', function (e) {
-          // Get the index of the active tab
-          const activeIndex = Array.from(tabButtons).indexOf(e.target);
-          
-          // Update the corresponding swiper
-          if (swipers[activeIndex]) {
-              swipers[activeIndex].update();
-          }
-      });
+  tabButtons.forEach((button) => {
+    button.addEventListener('shown.bs.tab', function (e) {
+      const activeIndex = Array.from(tabButtons).indexOf(e.target);
+      if (swipers[activeIndex]) {
+        swipers[activeIndex].update();
+      }
+    });
   });
 });
+
 
 document.addEventListener('DOMContentLoaded', function() {
   var playBtn = document.getElementById('video-play-btn');
@@ -254,6 +254,7 @@ document.addEventListener('DOMContentLoaded', function () {
   let isFixed = false;
   let lastScrollY = 0;
 
+  // --- DESKTOP PLACEHOLDER LOGIC ---
   function createPlaceholder() {
     const ph = document.createElement('div');
     ph.className = 'nav-placeholder';
@@ -261,23 +262,34 @@ document.addEventListener('DOMContentLoaded', function () {
     return ph;
   }
 
-  function fixNav() {
+  function fixNavDesktop() {
     if (isFixed) return;
     placeholder = createPlaceholder();
     nav.parentNode.insertBefore(placeholder, nav.nextSibling);
     nav.classList.add('nav-fixed');
     headerStrip.style.opacity = '0';
-    document.documentElement.style.setProperty('--nav-height', nav.offsetHeight + 'px');
     isFixed = true;
   }
-  
 
-  function unfixNav() {
+  function unfixNavDesktop() {
     if (!isFixed) return;
-    if (placeholder && placeholder.parentNode) {
-      placeholder.parentNode.removeChild(placeholder);
-      placeholder = null;
-    }
+    if (placeholder && placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+    placeholder = null;
+    nav.classList.remove('nav-fixed');
+    headerStrip.style.opacity = '1';
+    isFixed = false;
+  }
+
+  // --- MOBILE FIXED LOGIC ---
+  function fixNavMobile() {
+    if (isFixed) return;
+    nav.classList.add('nav-fixed');
+    headerStrip.style.opacity = '0';
+    isFixed = true;
+  }
+
+  function unfixNavMobile() {
+    if (!isFixed) return;
     nav.classList.remove('nav-fixed');
     headerStrip.style.opacity = '1';
     isFixed = false;
@@ -286,14 +298,22 @@ document.addEventListener('DOMContentLoaded', function () {
   function checkPosition() {
     const headerBottom = headerStrip.getBoundingClientRect().bottom;
     const scrollY = window.scrollY;
+    const isMobile = window.innerWidth <= 768;
 
-    // When header-strip fully scrolled out of view
-    if (headerBottom <= 0 && !isFixed) {
-      fixNav();
-    } 
-    // When scrolling up and header-strip becomes visible again
-    else if (headerBottom > 0 && isFixed && scrollY <= lastScrollY) {
-      unfixNav();
+    if (isMobile) {
+      // MOBILE: keep nav fixed at top, no animation or gap
+      if (headerBottom <= 0 && !isFixed) {
+        fixNavMobile();
+      } else if (headerBottom > 0 && isFixed && scrollY <= lastScrollY) {
+        unfixNavMobile();
+      }
+    } else {
+      // DESKTOP: smooth sticky with placeholder
+      if (headerBottom <= 0 && !isFixed) {
+        fixNavDesktop();
+      } else if (headerBottom > 0 && isFixed && scrollY <= lastScrollY) {
+        unfixNavDesktop();
+      }
     }
 
     lastScrollY = scrollY;
@@ -311,9 +331,23 @@ document.addEventListener('DOMContentLoaded', function () {
   });
 
   window.addEventListener('resize', () => {
-    if (placeholder) placeholder.style.height = nav.offsetHeight + 'px';
+    // Reset when switching between mobile and desktop
+    if (window.innerWidth <= 768) {
+      if (placeholder && placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+      placeholder = null;
+      nav.classList.remove('nav-fixed');
+      isFixed = false;
+      headerStrip.style.opacity = '1';
+    } else {
+      nav.classList.remove('nav-fixed');
+      if (placeholder && placeholder.parentNode) placeholder.parentNode.removeChild(placeholder);
+      placeholder = null;
+      isFixed = false;
+      headerStrip.style.opacity = '1';
+    }
   });
-}); 
+});
+
 
 
 // *****************************************************************************************
@@ -365,4 +399,13 @@ document.addEventListener('DOMContentLoaded', () => {
 
 
 // **************************************************************************************************
+
+window.addEventListener("scroll", function() {
+  const nav = document.querySelector("nav");
+  if (window.scrollY > 50) {
+    nav.classList.add("scrolled");
+  } else {
+    nav.classList.remove("scrolled");
+  }
+});
 

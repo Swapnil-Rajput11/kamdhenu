@@ -459,6 +459,34 @@
   letter-spacing: -0.2px;
   margin-top: 10px;
 }
+#main .our-bestseller .swiper .swiper-slide .product-card a {
+  display: flex;
+  padding: 9px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-variant-numeric: ordinal;
+  font-feature-settings: "dlig" on;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  display: none;
+  text-align: center;
+}
+#main .our-bestseller .swiper .swiper-slide .product-card a:hover {
+  background-color: #78070A;
+}
+#main .our-bestseller .swiper .swiper-slide .product-card a svg {
+  fill: var(--color-white);
+  margin-right: 10px;
+}
 #main .our-bestseller .swiper .bestseller-swiper-pagination {
   position: relative;
   bottom: 0;
@@ -2445,6 +2473,21 @@ nav {
   #main footer .copyright .d-flex {
     justify-content: center !important;
   }
+  #main .cta .content {
+    position: absolute;
+    top: 0;
+    left: auto;
+    transform: none;
+    text-align: center;
+    margin-top: 50px;
+    padding: 0 20px;
+  }
+  .product-card .cart-mobile {
+    display: block !important;
+  }
+  #main footer .copyright {
+    margin-bottom: 0;
+  }
 }
 /* Mobile Responsive Styles */
 @media (max-width: 768px) {
@@ -2587,5 +2630,129 @@ nav {
   .our-strength .icon-box span {
     font-size: 14px;
     line-height: 120%;
+  }
+}
+/* Desktop fixed nav (same as before) */
+.nav-container.nav-fixed {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 999;
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+  transition: top 0.25s ease-in-out;
+}
+
+/* --- MOBILE FIX --- */
+@media (max-width: 768px) {
+  .nav-container.nav-fixed {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 999;
+    background: #fff;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
+    transition: none !important; /* no jumpy animation */
+  }
+  .nav-placeholder {
+    display: none !important; /* prevent mobile gap */
+  }
+}
+/* --- FIX NAVBAR STICKY FOR BOTH MOBILE + DESKTOP --- */
+nav {
+  position: sticky;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 999;
+  background-color: #fff;
+  transition: all 0.3s ease;
+}
+
+.product-card .cart-mobile {
+  display: flex;
+  padding: 9px 16px;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  align-self: stretch;
+  border-radius: 4px;
+  background: var(--color-primary);
+  color: var(--color-white);
+  font-variant-numeric: ordinal;
+  font-feature-settings: "dlig" on;
+  font-size: 14px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: 150%; /* 21px */
+  margin-top: 20px;
+  transition: all 0.3s ease;
+  display: none;
+  text-align: center;
+}
+.product-card .cart-mobile:hover {
+  background-color: #78070A;
+}
+.product-card .cart-mobile svg {
+  fill: var(--color-white);
+  margin-right: 10px;
+}
+
+/* Optional subtle shadow when scrolled */
+nav.scrolled {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* --- MOBILE FIXES --- */
+@media (max-width: 768px) {
+  nav {
+    position: fixed; /* Make nav stick even better on mobile */
+  }
+  body {
+    overflow-x: hidden;
+  }
+  .nav-container, .header-strip {
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+  .hero {
+    margin-top: 140px;
+  }
+}
+.desktop-img {
+  display: block;
+}
+
+.mobile-img {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .desktop-img {
+    display: none;
+  }
+  .mobile-img {
+    display: block;
+  }
+}
+/* Fix for mobile Swiper showing side space */
+@media (max-width: 768px) {
+  .shop-by-swiper .swiper-wrapper {
+    margin: 0 !important;
+  }
+  .shop-by-swiper .swiper-slide {
+    width: 100% !important; /* each slide takes full width */
+    margin: 0 auto !important;
+  }
+  .shop-by-concern {
+    padding-left: 30px !important;
+    padding-right: 30px !important;
+  }
+  .shop-by-concern .tab-content {
+    width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
   }
 }/*# sourceMappingURL=main.css.map */
