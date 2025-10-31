@@ -1,20 +1,34 @@
+// -------------------------
 // Init Lenis smooth scrolling
+// -------------------------
 const lenis = new Lenis();
+window.lenis = lenis; // make it global so other scripts can access it
+
 function raf(time) {
   lenis.raf(time);
   requestAnimationFrame(raf);
 }
 requestAnimationFrame(raf);
 
-// GSAP animate h1 in
-window.addEventListener('DOMContentLoaded', () => {
-  gsap.to("#heading", {
-    opacity: 1,
-    y: 0,
-    duration: 1.2,
-    ease: "power2.out"
-  });
+
+
+// -------------------------
+// Disable main scroll when offcanvas is open
+// -------------------------
+const offcanvasSearch = document.getElementById('offcanvasSearch');
+
+// When offcanvas opens
+offcanvasSearch.addEventListener('show.bs.offcanvas', () => {
+  lenis.stop(); // stop Lenis smooth scroll
+  document.body.style.overflow = 'hidden'; // lock body scroll
 });
+
+// When offcanvas closes
+offcanvasSearch.addEventListener('hidden.bs.offcanvas', () => {
+  lenis.start(); // resume Lenis scroll
+  document.body.style.overflow = ''; // unlock body scroll
+});
+
 
 // Custom cursor
 document.querySelector(".cursor2"),
@@ -409,3 +423,45 @@ window.addEventListener("scroll", function() {
   }
 });
 
+// Initialize Search Sidebar Swiper
+const sidebarSwiper = new Swiper('.sidebar-swiper', {
+  slidesPerView: 1,
+  spaceBetween: 15,
+  pagination: {
+    el: '.sidebar-swiper-pagination',
+    clickable: true,
+  },
+  breakpoints: {
+    480: {
+      slidesPerView: 1,
+    },
+    768: {
+      slidesPerView: 2, // show 2 cards in sidebar on larger screens
+      spaceBetween: 20,
+    },
+  },
+});
+
+// Initialize Trending Products Swiper
+const sideSwiper = new Swiper('.side-swiper', {
+  slidesPerView: 1,
+  spaceBetween: 20,
+  pagination: {
+    el: '.side-swiper-pagination',
+    clickable: true,
+  },
+  navigation: {
+    nextEl: '.side-swiper-button-next',
+    prevEl: '.side-swiper-button-prev',
+  },
+  breakpoints: {
+    768: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+    1024: {
+      slidesPerView: 2,
+      spaceBetween: 20,
+    },
+  },
+});
